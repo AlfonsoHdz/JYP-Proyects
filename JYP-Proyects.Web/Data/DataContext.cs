@@ -16,6 +16,8 @@ namespace JYP_Proyects.Web.Data
 
         public DbSet<Period> Periods { get; set; }
 
+
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
 
         {
