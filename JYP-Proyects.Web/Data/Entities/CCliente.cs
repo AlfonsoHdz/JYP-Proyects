@@ -7,11 +7,10 @@ namespace JYP_Proyects.Web.Data.Entities
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CVehiculos
+    public class CCliente : IEntity
     {
         [Display(Name = "Id")]
         public int Id { get; set; }
-
 
         [Required]
         [MaxLength(20)]
@@ -19,18 +18,27 @@ namespace JYP_Proyects.Web.Data.Entities
         public string Nombre { get; set; }
 
         [Required]
-        [MaxLength(300)]
-        [Display(Name = "Descripcion del Vehiculo")]
-        public string DescripcionV { get; set; }
+        [MaxLength(20)]
+        [Display(Name = "Apellido")]
+        public string Apellido { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        [Display(Name = "Modelo del Vehiculo")]
-        public string Año { get; set; }
+        [MaxLength(100)]
+        [Display(Name = "Direccion")]
+        public string Direccion { get; set; }
 
         [Required]
         [MaxLength(20)]
-        [Display(Name = "Precio del Vehiculo")]
-        public double Precio { get; set; }
+        [Display(Name = "Telefono")]
+        public int Telefono { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        [Display(Name = "Correo")]
+        public int Correo { get; set; }
+
+
+
+
     }
 }

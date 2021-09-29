@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 namespace JYP_Proyects.Web.Data.Entities
 {
     using System.ComponentModel.DataAnnotations;
-    public class CAgentes_Ventas
+
+    public class CVehiculo : IEntity
     {
         [Display(Name = "Id")]
         public int Id { get; set; }
+
 
         [Required]
         [MaxLength(20)]
@@ -18,13 +20,17 @@ namespace JYP_Proyects.Web.Data.Entities
 
         [Required]
         [MaxLength(300)]
-        [Display(Name = "Nombre de Usurio")]
-        public string Usuario { get; set; }
+        [Display(Name = "Descripcion del Vehiculo")]
+        public string DescripcionV { get; set; }
 
         [Required]
-        [MaxLength(30)]
-        [Display(Name = "Contraseña")]
-        public string Contraseña { get; set; }
+        [MaxLength(10)]
+        [Display(Name = "Modelo del Vehiculo")]
+        public string Año { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        [Display(Name = "Precio del Vehiculo")]
+        public double Precio { get; set; }
     }
 }

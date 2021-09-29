@@ -7,27 +7,25 @@ namespace JYP_Proyects.Web.Data.Entities
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CCompras
+    public class CVenta : IEntity
     {
         [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(20)]
-        [Display(Name = "Fecha de la Compra")]
-        public string FechaC { get; set; }
+        [Display(Name = "Fecha de la Venta")]
+        public string FechaV { get; set; }
 
         [Required]
         [MaxLength(300)]
-        [Display(Name = "Descripcion de la Compra")]
-        public string DescripcionC { get; set; }
+        [Display(Name = "Descripcion de la Venta")]
+        public string DescripcionV { get; set; }
 
 
         [Required]
         [MaxLength(20)]
-        [Display(Name = "Costo de la Compra")]
-        public double CostoC { get; set; }
-
-
+        [Display(Name = "Costo de la Venta")]
+        public double CostoV { get; set; }
     }
 }

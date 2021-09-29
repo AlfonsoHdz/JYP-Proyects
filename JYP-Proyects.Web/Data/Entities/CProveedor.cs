@@ -7,9 +7,9 @@ namespace JYP_Proyects.Web.Data.Entities
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CAgencias : IEntity
+    public class CProveedor : IEntity
     {
-        [Display(Name = "Id" )]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Required]
@@ -18,9 +18,9 @@ namespace JYP_Proyects.Web.Data.Entities
         public string Nombre { get; set; }
 
         [Required]
-        [MaxLength(300)]
-        [Display(Name = "Descripcion")]
-        public string Descripcion { get; set; }
+        [MaxLength(20)]
+        [Display(Name = "Apellido")]
+        public string Apellido { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -36,14 +36,5 @@ namespace JYP_Proyects.Web.Data.Entities
         [MaxLength(20)]
         [Display(Name = "Correo")]
         public int Correo { get; set; }
-
-
-
-
-
-
-
-
-
     }
 }
