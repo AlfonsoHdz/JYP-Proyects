@@ -9,33 +9,33 @@ namespace JYP_Proyects.Web.Data.Entities
 
     public class CAgencia : IEntity
     {
-        [Display(Name = "Id" )]
+       // [Display(Name = "Id" )]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(20)]
-        [Display(Name = "Nombre")]
+      
         public string Nombre { get; set; }
 
         [Required]
         [MaxLength(300)]
-        [Display(Name = "Descripcion")]
+        
         public string Descripcion { get; set; }
 
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Direccion")]
+        
         public string Direccion { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        [Display(Name = "Telefono")]
-        public int Telefono { get; set; }
+        [MaxLength(50)]
+       
+        public string Telefono { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        [Display(Name = "Correo")]
-        public int Correo { get; set; }
+        [MaxLength(25)]
+
+        public string Correo { get; set; }
 
 
     }

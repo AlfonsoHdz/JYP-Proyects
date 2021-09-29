@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JYP_Proyects.Web.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class CAgencia : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,16 +49,99 @@ namespace JYP_Proyects.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Periods",
+                name: "CAgencias",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 20, nullable: false)
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    Descripcion = table.Column<string>(maxLength: 300, nullable: false),
+                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
+                    Telefono = table.Column<string>(maxLength: 50, nullable: false),
+                    Correo = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Periods", x => x.Id);
+                    table.PrimaryKey("PK_CAgencias", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CAgentes_Ventas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    Usuario = table.Column<string>(maxLength: 300, nullable: false),
+                    Contraseña = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CAgentes_Ventas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CBodegas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cupo = table.Column<string>(maxLength: 20, nullable: false),
+                    Descripcion = table.Column<string>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CBodegas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CClientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 20, nullable: false),
+                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
+                    Telefono = table.Column<int>(maxLength: 20, nullable: false),
+                    Correo = table.Column<int>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CClientes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CProveedores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 20, nullable: false),
+                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
+                    Telefono = table.Column<int>(maxLength: 20, nullable: false),
+                    Correo = table.Column<int>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CProveedores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CVehiculos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    DescripcionV = table.Column<string>(maxLength: 300, nullable: false),
+                    Año = table.Column<string>(maxLength: 10, nullable: false),
+                    Precio = table.Column<double>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CVehiculos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -225,7 +308,22 @@ namespace JYP_Proyects.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Periods");
+                name: "CAgencias");
+
+            migrationBuilder.DropTable(
+                name: "CAgentes_Ventas");
+
+            migrationBuilder.DropTable(
+                name: "CBodegas");
+
+            migrationBuilder.DropTable(
+                name: "CClientes");
+
+            migrationBuilder.DropTable(
+                name: "CProveedores");
+
+            migrationBuilder.DropTable(
+                name: "CVehiculos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
