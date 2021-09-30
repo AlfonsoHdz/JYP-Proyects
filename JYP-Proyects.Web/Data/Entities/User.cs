@@ -39,5 +39,8 @@ namespace JYP_Proyects.Web.Data.Entities
 
         [Display(Name = "Nombre")]
         public string FullName => $"{LastName} {FirstName}";
+
+
+
     }
 }
