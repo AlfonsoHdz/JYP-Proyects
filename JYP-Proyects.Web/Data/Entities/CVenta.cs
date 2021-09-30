@@ -27,5 +27,13 @@ namespace JYP_Proyects.Web.Data.Entities
         [MaxLength(20)]
         [Display(Name = "Costo de la Venta")]
         public double CostoV { get; set; }
+
+
+        public CCliente CCliente { get; set; }
+
+        public CAgentes_Venta CAgentes_Venta { get; set; }
+
+
+
     }
 }

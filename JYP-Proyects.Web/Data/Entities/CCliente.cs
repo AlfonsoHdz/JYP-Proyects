@@ -37,6 +37,8 @@ namespace JYP_Proyects.Web.Data.Entities
         [Display(Name = "Correo")]
         public int Correo { get; set; }
 
+        public ICollection<CVenta> CVentas { get; set; }
+
 
 
 

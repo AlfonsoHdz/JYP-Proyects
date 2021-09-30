@@ -32,5 +32,8 @@ namespace JYP_Proyects.Web.Data.Entities
         [MaxLength(20)]
         [Display(Name = "Precio del Vehiculo")]
         public double Precio { get; set; }
+
+
+        
     }
 }

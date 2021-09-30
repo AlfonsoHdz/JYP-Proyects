@@ -26,5 +26,7 @@ namespace JYP_Proyects.Web.Data.Entities
         [Display(Name = "Contraseña")]
         public string Contraseña { get; set; }
 
+        public ICollection<CVenta> CVentas { get; set; }
+
     }
 }
