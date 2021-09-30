@@ -33,6 +33,8 @@ namespace JYP_Proyects.Web.Data.Entities
         [Display(Name = "Precio del Vehiculo")]
         public double Precio { get; set; }
 
+        public CInventario CInventario { get; set; }
+
 
         
     }

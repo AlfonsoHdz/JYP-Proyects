@@ -25,5 +25,7 @@ namespace JYP_Proyects.Web.Data.Entities
         [MaxLength(100)]
 
         public string Descripcion { get; set; }
+
+        public ICollection<CVehiculo> CVehiculos { get; set; }
     }
 }
