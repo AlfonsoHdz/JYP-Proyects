@@ -29,5 +29,8 @@ namespace JYP_Proyects.Web.Data.Entities
         public double CostoC { get; set; }
 
 
+        public CProveedor CProveedor { get; set; }
+
+
     }
 }

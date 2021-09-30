@@ -33,6 +33,10 @@ namespace JYP_Proyects.Web.Data.Entities
 
         public CAgentes_Venta CAgentes_Venta { get; set; }
 
+        public CAgencia CAgencia { get; set; }
+
+
+
 
 
     }

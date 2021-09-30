@@ -26,6 +26,7 @@ namespace JYP_Proyects.Web.Data.Entities
 
         public string Descripcion { get; set; }
 
+        public ICollection<CBodega> CBodegas { get; set; }
         public ICollection<CVehiculo> CVehiculos { get; set; }
     }
 }

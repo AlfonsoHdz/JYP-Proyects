@@ -14,5 +14,9 @@ namespace JYP_Proyects.Web.Data.Entities
         public int Id { get; set; }
 
         public User User { get; set; }
+
+        public CAgencia CAgencia { get; set; }
+
+        public ICollection<CCompra> CCompras { get; set; }
     }
 }
