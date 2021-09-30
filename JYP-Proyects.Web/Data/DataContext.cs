@@ -18,17 +18,29 @@ namespace JYP_Proyects.Web.Data
 
         public DbSet<CAgencia> CAgencias { get; set; }
 
-        public DbSet<CVehiculo> CVehiculos { get; set; }
-
         public DbSet<CAgentes_Venta> CAgentes_Ventas { get; set; }
-
-        public DbSet<CCliente> CClientes { get; set; }
 
         public DbSet<CBodega> CBodegas { get; set; }
 
+        public DbSet<CCliente> CClientes { get; set; }
+
+        public DbSet<CCompra> CCompras { get; set; }
+        public DbSet<CInventario> CInventarios { get; set; }
         public DbSet<CProveedor> CProveedores { get; set; }
 
-        public DbSet<CInventario> CInventarios { get; set; }
+        public DbSet<CVehiculo> CVehiculos { get; set; }
+
+        public DbSet<CVenta> CVentas { get; set; }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -24,9 +24,11 @@ namespace JYP_Proyects.Web.Data.Entities
         public string Descripcion { get; set; }
 
 
-        public ICollection<CAgencia> CAgencias { get; set; }
+        
 
-      //  public ICollection<CInventario> CInventarios { get; set; }
+        public CAgencia CAgencia { get; set; }
+
+        public ICollection<CInventario> CInventarios { get; set; }
 
 
 

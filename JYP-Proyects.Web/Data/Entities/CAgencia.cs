@@ -40,7 +40,9 @@ namespace JYP_Proyects.Web.Data.Entities
 
         public ICollection<CVenta> CVentas { get; set; }
 
-       // public ICollection<CBodega> CBodegas { get; set; }
+
+        //Error
+       public ICollection<CBodega> CBodegas { get; set; }
 
         //Relacion 1:1
         public ICollection<CProveedor> CProveedors { get; set; }

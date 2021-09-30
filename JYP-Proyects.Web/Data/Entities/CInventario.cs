@@ -16,9 +16,9 @@ namespace JYP_Proyects.Web.Data.Entities
         [MaxLength(300)]
         public string CantidadAutos { get; set; }
 
-      
 
-        public ICollection<CBodega> CBodegas { get; set; }
+
+        public CBodega CBodega { get; set; }
         public ICollection<CVehiculo> CVehiculos { get; set; }
     }
 }
