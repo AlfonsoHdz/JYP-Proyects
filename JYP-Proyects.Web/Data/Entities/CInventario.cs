@@ -7,5 +7,6 @@ namespace JYP_Proyects.Web.Data.Entities
 {
     public class CInventario
     {
+
     }
 }
