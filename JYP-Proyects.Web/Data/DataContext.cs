@@ -28,6 +28,10 @@ namespace JYP_Proyects.Web.Data
 
         public DbSet<CProveedor> CProveedores { get; set; }
 
+        public DbSet<CInventario> CInventarios { get; set; }
+
+
+
 
 
 
