@@ -11,20 +11,12 @@ namespace JYP_Proyects.Web.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-
-        public string Nombre { get; set; }
-
+        
         [Required]
         [MaxLength(300)]
-
         public string CantidadAutos { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-
-        public string Descripcion { get; set; }
+      
 
         public ICollection<CBodega> CBodegas { get; set; }
         public ICollection<CVehiculo> CVehiculos { get; set; }

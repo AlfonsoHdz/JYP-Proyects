@@ -26,7 +26,7 @@ namespace JYP_Proyects.Web.Data.Entities
 
         public ICollection<CAgencia> CAgencias { get; set; }
 
-        public ICollection<CInventario> CInventarios { get; set; }
+      //  public ICollection<CInventario> CInventarios { get; set; }
 
 
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JYP_Proyects.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210929015236_CAgencia")]
-    partial class CAgencia
+    [Migration("20210930023410_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace JYP_Proyects.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CBodegaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Correo")
                         .IsRequired()
@@ -55,6 +58,8 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CBodegaId");
+
                     b.ToTable("CAgencias");
                 });
 
@@ -65,22 +70,12 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Contraseña")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CAgentes_Ventas");
                 });
@@ -91,6 +86,9 @@ namespace JYP_Proyects.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CInventarioId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cupo")
                         .IsRequired()
@@ -104,6 +102,8 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CInventarioId");
+
                     b.ToTable("CBodegas");
                 });
 
@@ -114,32 +114,62 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Apellido")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CClientes");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CCompra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CProveedorId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("CostoC")
+                        .HasColumnType("float")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("DescripcionC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("FechaC")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("Correo")
-                        .HasColumnType("int")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("Telefono")
-                        .HasColumnType("int")
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
 
-                    b.ToTable("CClientes");
+                    b.HasIndex("CProveedorId");
+
+                    b.ToTable("CCompra");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CInventario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CantidadAutos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CInventarios");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CProveedor", b =>
@@ -149,30 +179,17 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                    b.Property<int?>("CAgenciaId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("Correo")
-                        .HasColumnType("int")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("Telefono")
-                        .HasColumnType("int")
-                        .HasMaxLength(20);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CAgenciaId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CProveedores");
                 });
@@ -188,6 +205,9 @@ namespace JYP_Proyects.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
+
+                    b.Property<int?>("CInventarioId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DescripcionV")
                         .IsRequired()
@@ -205,7 +225,50 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CInventarioId");
+
                     b.ToTable("CVehiculos");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CVenta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CAgenciaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CAgentes_VentaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("CostoV")
+                        .HasColumnType("float")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("DescripcionV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("FechaV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CAgenciaId");
+
+                    b.HasIndex("CAgentes_VentaId");
+
+                    b.HasIndex("CClienteId");
+
+                    b.ToTable("CVenta");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.User", b =>
@@ -216,11 +279,17 @@ namespace JYP_Proyects.Web.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
@@ -255,8 +324,8 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -413,6 +482,74 @@ namespace JYP_Proyects.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CAgencia", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CBodega", null)
+                        .WithMany("CAgencias")
+                        .HasForeignKey("CBodegaId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CAgentes_Venta", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CBodega", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CInventario", null)
+                        .WithMany("CBodegas")
+                        .HasForeignKey("CInventarioId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CCliente", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CCompra", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CProveedor", "CProveedor")
+                        .WithMany("CCompras")
+                        .HasForeignKey("CProveedorId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CProveedor", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CAgencia", "CAgencia")
+                        .WithMany("CProveedors")
+                        .HasForeignKey("CAgenciaId");
+
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CVehiculo", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CInventario", "CInventario")
+                        .WithMany("CVehiculos")
+                        .HasForeignKey("CInventarioId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CVenta", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CAgencia", "CAgencia")
+                        .WithMany("CVentas")
+                        .HasForeignKey("CAgenciaId");
+
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CAgentes_Venta", "CAgentes_Venta")
+                        .WithMany("CVentas")
+                        .HasForeignKey("CAgentes_VentaId");
+
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CCliente", "CCliente")
+                        .WithMany("CVentas")
+                        .HasForeignKey("CClienteId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
