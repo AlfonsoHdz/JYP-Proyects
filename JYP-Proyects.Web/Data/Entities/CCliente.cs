@@ -16,7 +16,7 @@ namespace JYP_Proyects.Web.Data.Entities
        public User User { get; set; }
 
         public ICollection<CVenta> CVentas { get; set; }
-
+        //hola
 
 
 
