@@ -16,7 +16,8 @@ namespace JYP_Proyects.Web
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            RunSeeding(host);
+          
+            //  RunSeeding(host);
             host.Run();
         }
 
@@ -26,7 +27,10 @@ namespace JYP_Proyects.Web
             using(var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<Seeder>();
-                seeder.SeedAsync().Wait();
+
+
+                //Error
+               // seeder.SeedAsync().Wait();
             }
         }
 

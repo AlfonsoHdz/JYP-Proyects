@@ -26,10 +26,10 @@ namespace JYP_Proyects.Web.Data
             //
             if (!this.dataContext.CVehiculos.Any())
             {
-                await CheckVehiculo("Tsuru", "Tsuru tuneado", "2000", 100000);
-                await CheckVehiculo("Sentra", "Sentra tuneado", "2005", 300000);
-                await CheckVehiculo("Vocho", "Vocho tuneado", "2006", 200000);
-                await CheckVehiculo("Lamborghini", "Lamborghini tuneado", "2020", 1000000);
+              ////  await CheckVehiculo("Tsuru", "Tsuru tuneado", "2000", 100000);
+              //  await CheckVehiculo("Sentra", "Sentra tuneado", "2005", 300000);
+              //  await CheckVehiculo("Vocho", "Vocho tuneado", "2006", 200000);
+              //  await CheckVehiculo("Lamborghini", "Lamborghini tuneado", "2020", 1000000);
             }
         }
 
@@ -42,7 +42,7 @@ namespace JYP_Proyects.Web.Data
             this.dataContext.CVehiculos.Add(new CVehiculo { DescripcionV = descripcionV });
             this.dataContext.CVehiculos.Add(new CVehiculo { Año = año });
             this.dataContext.CVehiculos.Add(new CVehiculo { Precio = precio });
-            await this.dataContext.SaveChangesAsync();
+           // await this.dataContext.SaveChangesAsync();
         }
     }
 }
