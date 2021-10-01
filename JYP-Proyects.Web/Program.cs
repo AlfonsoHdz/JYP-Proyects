@@ -17,7 +17,9 @@ namespace JYP_Proyects.Web
         {
             var host = CreateHostBuilder(args).Build();
           
-            //  RunSeeding(host);
+            //Errror
+            RunSeeding(host);
+
             host.Run();
         }
 
@@ -30,7 +32,7 @@ namespace JYP_Proyects.Web
 
 
                 //Error
-               // seeder.SeedAsync().Wait();
+               seeder.SeedAsync().Wait();
             }
         }
 
