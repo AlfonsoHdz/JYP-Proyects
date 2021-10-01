@@ -57,7 +57,8 @@ namespace JYP_Proyects.Web
                 
             });
 
-                
+            //Inyeccion de codigo
+            services.AddTransient<Seeder>();    
             services.AddControllersWithViews();
         }
 

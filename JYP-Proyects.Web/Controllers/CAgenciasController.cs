@@ -54,7 +54,9 @@ namespace JYP_Proyects.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Direccion,Telefono,Correo")] CAgencia cAgencia)
+
+        //[Bind("Id,Nombre,Descripcion,Direccion,Telefono,Correo")]
+        public async Task<IActionResult> Create(CAgencia cAgencia)
         {
             if (ModelState.IsValid)
             {

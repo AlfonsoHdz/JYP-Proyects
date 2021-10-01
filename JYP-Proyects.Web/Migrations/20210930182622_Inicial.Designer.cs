@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JYP_Proyects.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210930023410_Inicial")]
+    [Migration("20210930182622_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,6 @@ namespace JYP_Proyects.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CBodegaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Correo")
                         .IsRequired()
@@ -58,8 +55,6 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CBodegaId");
-
                     b.ToTable("CAgencias");
                 });
 
@@ -87,7 +82,7 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CInventarioId")
+                    b.Property<int?>("CAgenciaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Cupo")
@@ -102,7 +97,7 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CInventarioId");
+                    b.HasIndex("CAgenciaId");
 
                     b.ToTable("CBodegas");
                 });
@@ -152,7 +147,7 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasIndex("CProveedorId");
 
-                    b.ToTable("CCompra");
+                    b.ToTable("CCompras");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CInventario", b =>
@@ -162,12 +157,17 @@ namespace JYP_Proyects.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CBodegaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CantidadAutos")
                         .IsRequired()
                         .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CBodegaId");
 
                     b.ToTable("CInventarios");
                 });
@@ -268,7 +268,7 @@ namespace JYP_Proyects.Web.Migrations
 
                     b.HasIndex("CClienteId");
 
-                    b.ToTable("CVenta");
+                    b.ToTable("CVentas");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.User", b =>
@@ -484,13 +484,6 @@ namespace JYP_Proyects.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CAgencia", b =>
-                {
-                    b.HasOne("JYP_Proyects.Web.Data.Entities.CBodega", null)
-                        .WithMany("CAgencias")
-                        .HasForeignKey("CBodegaId");
-                });
-
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CAgentes_Venta", b =>
                 {
                     b.HasOne("JYP_Proyects.Web.Data.Entities.User", "User")
@@ -500,9 +493,9 @@ namespace JYP_Proyects.Web.Migrations
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CBodega", b =>
                 {
-                    b.HasOne("JYP_Proyects.Web.Data.Entities.CInventario", null)
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CAgencia", "CAgencia")
                         .WithMany("CBodegas")
-                        .HasForeignKey("CInventarioId");
+                        .HasForeignKey("CAgenciaId");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CCliente", b =>
@@ -517,6 +510,13 @@ namespace JYP_Proyects.Web.Migrations
                     b.HasOne("JYP_Proyects.Web.Data.Entities.CProveedor", "CProveedor")
                         .WithMany("CCompras")
                         .HasForeignKey("CProveedorId");
+                });
+
+            modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CInventario", b =>
+                {
+                    b.HasOne("JYP_Proyects.Web.Data.Entities.CBodega", "CBodega")
+                        .WithMany("CInventarios")
+                        .HasForeignKey("CBodegaId");
                 });
 
             modelBuilder.Entity("JYP_Proyects.Web.Data.Entities.CProveedor", b =>

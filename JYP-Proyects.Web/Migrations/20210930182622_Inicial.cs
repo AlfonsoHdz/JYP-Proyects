@@ -50,16 +50,20 @@ namespace JYP_Proyects.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CInventarios",
+                name: "CAgencias",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CantidadAutos = table.Column<string>(maxLength: 300, nullable: false)
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    Descripcion = table.Column<string>(maxLength: 300, nullable: false),
+                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
+                    Telefono = table.Column<string>(maxLength: 50, nullable: false),
+                    Correo = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CInventarios", x => x.Id);
+                    table.PrimaryKey("PK_CAgencias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,62 +218,15 @@ namespace JYP_Proyects.Web.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cupo = table.Column<string>(maxLength: 20, nullable: false),
                     Descripcion = table.Column<string>(maxLength: 20, nullable: false),
-                    CInventarioId = table.Column<int>(nullable: true)
+                    CAgenciaId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CBodegas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CBodegas_CInventarios_CInventarioId",
-                        column: x => x.CInventarioId,
-                        principalTable: "CInventarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CVehiculos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
-                    DescripcionV = table.Column<string>(maxLength: 300, nullable: false),
-                    Año = table.Column<string>(maxLength: 10, nullable: false),
-                    Precio = table.Column<double>(maxLength: 20, nullable: false),
-                    CInventarioId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CVehiculos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CVehiculos_CInventarios_CInventarioId",
-                        column: x => x.CInventarioId,
-                        principalTable: "CInventarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CAgencias",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
-                    Descripcion = table.Column<string>(maxLength: 300, nullable: false),
-                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
-                    Telefono = table.Column<string>(maxLength: 50, nullable: false),
-                    Correo = table.Column<string>(maxLength: 25, nullable: false),
-                    CBodegaId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CAgencias", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CAgencias_CBodegas_CBodegaId",
-                        column: x => x.CBodegaId,
-                        principalTable: "CBodegas",
+                        name: "FK_CBodegas_CAgencias_CAgenciaId",
+                        column: x => x.CAgenciaId,
+                        principalTable: "CAgencias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -301,7 +258,7 @@ namespace JYP_Proyects.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CVenta",
+                name: "CVentas",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -315,21 +272,21 @@ namespace JYP_Proyects.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CVenta", x => x.Id);
+                    table.PrimaryKey("PK_CVentas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CVenta_CAgencias_CAgenciaId",
+                        name: "FK_CVentas_CAgencias_CAgenciaId",
                         column: x => x.CAgenciaId,
                         principalTable: "CAgencias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CVenta_CAgentes_Ventas_CAgentes_VentaId",
+                        name: "FK_CVentas_CAgentes_Ventas_CAgentes_VentaId",
                         column: x => x.CAgentes_VentaId,
                         principalTable: "CAgentes_Ventas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CVenta_CClientes_CClienteId",
+                        name: "FK_CVentas_CClientes_CClienteId",
                         column: x => x.CClienteId,
                         principalTable: "CClientes",
                         principalColumn: "Id",
@@ -337,7 +294,27 @@ namespace JYP_Proyects.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CCompra",
+                name: "CInventarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CantidadAutos = table.Column<string>(maxLength: 300, nullable: false),
+                    CBodegaId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CInventarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CInventarios_CBodegas_CBodegaId",
+                        column: x => x.CBodegaId,
+                        principalTable: "CBodegas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CCompras",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -349,11 +326,34 @@ namespace JYP_Proyects.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CCompra", x => x.Id);
+                    table.PrimaryKey("PK_CCompras", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CCompra_CProveedores_CProveedorId",
+                        name: "FK_CCompras_CProveedores_CProveedorId",
                         column: x => x.CProveedorId,
                         principalTable: "CProveedores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CVehiculos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    DescripcionV = table.Column<string>(maxLength: 300, nullable: false),
+                    Año = table.Column<string>(maxLength: 10, nullable: false),
+                    Precio = table.Column<double>(maxLength: 20, nullable: false),
+                    CInventarioId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CVehiculos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CVehiculos_CInventarios_CInventarioId",
+                        column: x => x.CInventarioId,
+                        principalTable: "CInventarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -398,19 +398,14 @@ namespace JYP_Proyects.Web.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CAgencias_CBodegaId",
-                table: "CAgencias",
-                column: "CBodegaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CAgentes_Ventas_UserId",
                 table: "CAgentes_Ventas",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CBodegas_CInventarioId",
+                name: "IX_CBodegas_CAgenciaId",
                 table: "CBodegas",
-                column: "CInventarioId");
+                column: "CAgenciaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CClientes_UserId",
@@ -418,9 +413,14 @@ namespace JYP_Proyects.Web.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CCompra_CProveedorId",
-                table: "CCompra",
+                name: "IX_CCompras_CProveedorId",
+                table: "CCompras",
                 column: "CProveedorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CInventarios_CBodegaId",
+                table: "CInventarios",
+                column: "CBodegaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CProveedores_CAgenciaId",
@@ -438,18 +438,18 @@ namespace JYP_Proyects.Web.Migrations
                 column: "CInventarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CVenta_CAgenciaId",
-                table: "CVenta",
+                name: "IX_CVentas_CAgenciaId",
+                table: "CVentas",
                 column: "CAgenciaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CVenta_CAgentes_VentaId",
-                table: "CVenta",
+                name: "IX_CVentas_CAgentes_VentaId",
+                table: "CVentas",
                 column: "CAgentes_VentaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CVenta_CClienteId",
-                table: "CVenta",
+                name: "IX_CVentas_CClienteId",
+                table: "CVentas",
                 column: "CClienteId");
         }
 
@@ -471,13 +471,13 @@ namespace JYP_Proyects.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CCompra");
+                name: "CCompras");
 
             migrationBuilder.DropTable(
                 name: "CVehiculos");
 
             migrationBuilder.DropTable(
-                name: "CVenta");
+                name: "CVentas");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -486,22 +486,22 @@ namespace JYP_Proyects.Web.Migrations
                 name: "CProveedores");
 
             migrationBuilder.DropTable(
+                name: "CInventarios");
+
+            migrationBuilder.DropTable(
                 name: "CAgentes_Ventas");
 
             migrationBuilder.DropTable(
                 name: "CClientes");
 
             migrationBuilder.DropTable(
-                name: "CAgencias");
+                name: "CBodegas");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "CBodegas");
-
-            migrationBuilder.DropTable(
-                name: "CInventarios");
+                name: "CAgencias");
         }
     }
 }
