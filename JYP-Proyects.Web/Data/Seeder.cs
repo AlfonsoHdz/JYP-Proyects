@@ -34,21 +34,21 @@ namespace JYP_Proyects.Web.Data
             //Alta de usuarios
             if (!this.dataContext.CAgentes_Ventas.Any())
             {
-                var user = await CheckUser("Juan","Mendez","222526287","juan@gmail.com","12345");
+                var user = await CheckUser("Juan","Mendez","222526287","juan@gmail.com","123456");
                 await CheckAgent(user, "SaleAgent");
                 
             }
 
             if (!this.dataContext.CClientes.Any())
             {
-                var user = await CheckUser("Pedro", "Palacios", "22262824", "palacios@gmail.com", "54321");
+                var user = await CheckUser("Pedro", "Palacios", "22262824", "palacios@gmail.com", "543211");
                 await CheckClient(user, "Client");
 
             }
 
             if (!this.dataContext.CProveedores.Any())
             {
-                var user = await CheckUser("Jesse", "Cerezo", "22272924", "jesse@gmail.com", "2000");
+                var user = await CheckUser("Jesse", "Cerezo", "22272924", "jesse@gmail.com", "200011");
                 await CheckProvider(user, "Provider");
 
             }

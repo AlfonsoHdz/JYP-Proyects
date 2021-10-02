@@ -28,6 +28,7 @@ namespace JYP_Proyects.Web.Migrations
                     Id = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
@@ -40,9 +41,7 @@ namespace JYP_Proyects.Web.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 100, nullable: false),
                     LastName = table.Column<string>(maxLength: 100, nullable: false),
-                    Adress = table.Column<string>(maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(maxLength: 100, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: false)
+                    PhoneNumber = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
