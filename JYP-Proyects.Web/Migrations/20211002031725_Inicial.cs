@@ -38,10 +38,10 @@ namespace JYP_Proyects.Web.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: false),
                     Adress = table.Column<string>(maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(maxLength: 15, nullable: true),
+                    PhoneNumber = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>

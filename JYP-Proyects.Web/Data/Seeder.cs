@@ -8,21 +8,51 @@ namespace JYP_Proyects.Web.Data
     using JYP_Proyects.Web.Data.Entities;
     using System.Threading.Tasks;
     using System.Linq;
+    using JYP_Proyects.Web.Helper;
+    using Microsoft.AspNetCore.Identity;
 
     public class Seeder
     {
         private readonly DataContext dataContext;
+        private readonly IUserHelper userHelper;
 
-        public Seeder(DataContext dataContext)
+        public Seeder(DataContext dataContext, IUserHelper userHelper)
         {
             this.dataContext = dataContext;
+            this.userHelper = userHelper;
         }
 
         public async Task SeedAsync()
         {
             await dataContext.Database.EnsureCreatedAsync();
 
-            
+            //Roles de usuario
+            await userHelper.CheckRoleAsync("SaleAgent");
+            await userHelper.CheckRoleAsync("Client");
+            await userHelper.CheckRoleAsync("Provider");
+
+            //Alta de usuarios
+            if (!this.dataContext.CAgentes_Ventas.Any())
+            {
+                var user = await CheckUser("Juan","Mendez","222526287","juan@gmail.com","12345");
+                await CheckAgent(user, "SaleAgent");
+                
+            }
+
+            if (!this.dataContext.CClientes.Any())
+            {
+                var user = await CheckUser("Pedro", "Palacios", "22262824", "palacios@gmail.com", "54321");
+                await CheckClient(user, "Client");
+
+            }
+
+            if (!this.dataContext.CProveedores.Any())
+            {
+                var user = await CheckUser("Jesse", "Cerezo", "22272924", "jesse@gmail.com", "2000");
+                await CheckProvider(user, "Provider");
+
+            }
+
 
 
             //
@@ -56,7 +86,32 @@ namespace JYP_Proyects.Web.Data
                 await CheckVenta("21/02/2021","Coche de 4 puertas", 222000);
             }
 
+
+
+
         }
+
+        private async Task CheckProvider(User user, string rol)
+        {
+            this.dataContext.CProveedores.Add(new CProveedor { User = user });
+            await this.dataContext.SaveChangesAsync();
+            await userHelper.AddUserToRoleAsync(user, rol);
+        }
+
+        private async Task CheckClient(User user, string rol)
+        {
+            this.dataContext.CClientes.Add(new CCliente { User = user });
+            await this.dataContext.SaveChangesAsync();
+            await userHelper.AddUserToRoleAsync(user, rol);
+        }
+
+        private async Task CheckAgent(User user, string rol)
+        {
+            this.dataContext.CAgentes_Ventas.Add(new CAgentes_Venta { User = user });
+            await this.dataContext.SaveChangesAsync();
+            await userHelper.AddUserToRoleAsync(user, rol);
+        }
+
         //
 
         //Metodos
@@ -96,6 +151,27 @@ namespace JYP_Proyects.Web.Data
             await this.dataContext.SaveChangesAsync();
         }
 
+        private async Task<User> CheckUser(string firstName, string lastName, string phoneNumber, string email, string password)
+        {
+            var user = await userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = phoneNumber,
+                    Email = email,
+                    UserName = email
+                };
+                var result = await userHelper.AddUserAsync(user, password);
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Error no se pudo crear el usuario");
+                }
+            }
+            return user;
+        }
 
     }
 }

@@ -22,7 +22,9 @@ namespace JYP_Proyects.Web.Controllers
         // GET: CProveedors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CProveedores.ToListAsync());
+            return View(await _context.CProveedores
+              .Include(t => t.User)
+              .ToListAsync());
         }
 
         // GET: CProveedors/Details/5

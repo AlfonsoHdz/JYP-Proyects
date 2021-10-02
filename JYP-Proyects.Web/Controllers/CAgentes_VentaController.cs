@@ -22,7 +22,9 @@ namespace JYP_Proyects.Web.Controllers
         // GET: CAgentes_Venta
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CAgentes_Ventas.ToListAsync());
+            return View(await _context.CAgentes_Ventas
+                .Include(t => t.User)
+                .ToListAsync());
         }
 
         // GET: CAgentes_Venta/Details/5

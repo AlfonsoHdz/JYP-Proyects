@@ -12,30 +12,23 @@ namespace JYP_Proyects.Web.Data.Entities
     public class User: IdentityUser
     {
         [Required(ErrorMessage = "{0} es obligatorio.")]
-        [MaxLength(50, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
         [Display(Name = "Nombre")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "{0} es obligatorio.")]
-        [MaxLength(50, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
         [Display(Name = "Apellidos")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "{0} es obligatorio.")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
-        [Display(Name  = "Direccion")]
-        public string Adress { get; set; }
+        //[Required(ErrorMessage = "{0} es obligatorio.")]
+        //[MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
+        //[Display(Name  = "Direccion")]
+        //public string Adress { get; set; }
 
-        [MaxLength(15, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
         [Display(Name = "Telefono")]
         public override string PhoneNumber { get; set; }
-
-        [Required(ErrorMessage = "{0} es obligatorio.")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
-        [Display(Name = "Correo")]
-        public override string Email { get; set; }
-
-
 
         [Display(Name = "Nombre")]
         public string FullName => $"{LastName} {FirstName}";

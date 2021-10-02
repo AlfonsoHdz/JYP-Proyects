@@ -1,5 +1,6 @@
 using JYP_Proyects.Web.Data;
 using JYP_Proyects.Web.Data.Entities;
+using JYP_Proyects.Web.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -58,7 +59,8 @@ namespace JYP_Proyects.Web
             });
 
             //Inyeccion de codigo
-            services.AddTransient<Seeder>();    
+            services.AddTransient<Seeder>();
+            services.AddScoped<IUserHelper, UserHelper>();
             services.AddControllersWithViews();
         }
 
