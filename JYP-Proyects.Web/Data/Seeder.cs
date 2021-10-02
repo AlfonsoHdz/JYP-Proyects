@@ -41,6 +41,7 @@ namespace JYP_Proyects.Web.Data
 
             if (!this.dataContext.CClientes.Any())
             {
+               
                 var user = await CheckUser("Pedro", "Palacios", "22262824", "palacios@gmail.com", "543211");
                 await CheckClient(user, "Client");
 
